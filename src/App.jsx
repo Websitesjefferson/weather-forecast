@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BsSearch } from 'react-icons/bs';
+import { FaTemperatureLow} from 'react-icons/fa';
 
 
 import { Container, Main, Section, Footer, Input } from "./styles/styles"
@@ -11,17 +12,18 @@ export function App() {
   const [load, setLoad] = useState(false)
   const [forecasts, setForecasts] = useState([])
 
-   let New = 'Brasilia'
+  let New = 'Brasilia'
 
   let time = new Date().toLocaleTimeString('pt-br', {
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
+    second: '2-digit'
 
 
   })
   let date = new Date().toLocaleDateString('pt-br')
 
-  
+
   const searchCity = () => {
     setLoad(true)
 
@@ -36,18 +38,18 @@ export function App() {
       .then((city) => {
         setForecast(city)
         setForecasts(city.forecast.forecastday)
-        
-        
 
-   }).catch(() => {
+
+
+      }).catch(() => {
         alert("Erro atualize a pagina!")
-        
+
       })
-    
+
 
     setForecast('')
     setLoad(false)
-    
+
 
   }
   useEffect(() => {
@@ -86,26 +88,26 @@ export function App() {
     <Container>
       <Main>
         <Input>
-       <input 
-        type="text"  
-        placeholder='Buscar por uma cidade...' 
-        onChange={e => setCity(e.target.value)} 
-         />
+          <input
+            type="text"
+            placeholder='Buscar por uma cidade...'
+            onChange={e => setCity(e.target.value)}
+          />
 
-        <button onClick={loadTime} disabled={load}>
-          {load ? 'Carregando' : <BsSearch/> }
-        </button>
+          <button onClick={loadTime} disabled={load}>
+            {load ? 'Carregando' : <BsSearch />}
+          </button>
         </Input>
       </Main>
       {
         forecast ? (
           <Section>
-
-            <h1> {forecast.location.name} / {forecast.location.region}</h1>
-            
             <img src={forecast.current.condition.icon} alt="" />
+           
+            <h1> {forecast.location.name} / {forecast.location.region}</h1>
 
             <p>{forecast.current.condition.text}</p>
+
 
             <p>Temp: {forecast.current.temp_c}°</p>
 
@@ -136,8 +138,8 @@ export function App() {
               </h2>
               <p>{e.day.condition.text}</p>
               <img src={e.day.condition.icon} alt="" />
-              <p>Max {e.day.maxtemp_c}</p>
-              <p>Min {e.day.mintemp_c}</p>
+              <p>Max {e.day.maxtemp_c} <FaTemperatureLow/> </p>
+              <p>Min {e.day.mintemp_c} <FaTemperatureLow/></p>
               <p>Vent {e.day.maxwind_kph}  Km/h</p>
               <p>Uv {e.day.uv}</p>
 

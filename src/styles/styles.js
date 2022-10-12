@@ -6,7 +6,7 @@ export const Container = styled.header`
    display: flex;
    flex-direction: column;
    align-items: center;
-   text-align: center;
+   
    justify-content: center;
    color: white;
    padding-inline: 20px;
@@ -111,7 +111,7 @@ export const Footer = styled.footer`
   display: flex;
   gap: 50px;
   flex-wrap: wrap;
-  text-align: center;
+  
   
   color: white;
   margin-top: 50px;
@@ -120,6 +120,10 @@ export const Footer = styled.footer`
  > article{
     width: 300px;
     font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
 }
 h2{
     margin-bottom: 20px;
